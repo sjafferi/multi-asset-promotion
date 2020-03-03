@@ -40,6 +40,10 @@
     });
   }
 
+  function formatTitle(title) {
+    return capitalize(title.replace("-", " "));
+  }
+
   async function onSubmit(environment, assets) {
     isLoading = true;
     const payload = assets.map(asset => ({ ...asset, env: environment }));
@@ -55,10 +59,6 @@
       formState.reset();
       notifier.success("Promotion successful!");
     }
-  }
-
-  function formatTitle(title) {
-    return capitalize(title.replace("-", " "));
   }
 </script>
 
@@ -90,7 +90,7 @@
 <svelte:head>
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>
-    {`Step ${store.currentStep + 1}/${FORM_STEPS.length} ${formatTitle(FORM_STEPS[store.currentStep])} | Multi-Asset Promotion`}
+    {`${formatTitle(FORM_STEPS[store.currentStep])} - Step ${store.currentStep + 1}/${FORM_STEPS.length} | Multi-Asset Promotion`}
   </title>
 </svelte:head>
 

@@ -6951,7 +6951,7 @@
     	let t3;
     	let current;
     	let dispose;
-    	document.title = title_value = "\n    " + `Step ${/*store*/ ctx[2].currentStep + 1}/${FORM_STEPS.length} ${formatTitle(FORM_STEPS[/*store*/ ctx[2].currentStep])} | Multi-Asset Promotion` + "\n  ";
+    	document.title = title_value = "\n    " + `${formatTitle(FORM_STEPS[/*store*/ ctx[2].currentStep])} - Step ${/*store*/ ctx[2].currentStep + 1}/${FORM_STEPS.length} | Multi-Asset Promotion` + "\n  ";
 
     	const promote = new Promote({
     			props: {
@@ -7003,7 +7003,7 @@
     			this.h();
     		},
     		l(nodes) {
-    			const head_nodes = query_selector_all("[data-svelte=\"svelte-kzm8bi\"]", document.head);
+    			const head_nodes = query_selector_all("[data-svelte=\"svelte-b0nz4t\"]", document.head);
     			meta = claim_element(head_nodes, "META", { name: true, content: true });
     			head_nodes.forEach(detach);
     			t0 = claim_space(nodes);
@@ -7055,7 +7055,7 @@
     			dispose = listen(window_1, "resize", /*updateStep*/ ctx[3]);
     		},
     		p(ctx, [dirty]) {
-    			if ((!current || dirty & /*store, FORM_STEPS, formatTitle*/ 4) && title_value !== (title_value = "\n    " + `Step ${/*store*/ ctx[2].currentStep + 1}/${FORM_STEPS.length} ${formatTitle(FORM_STEPS[/*store*/ ctx[2].currentStep])} | Multi-Asset Promotion` + "\n  ")) {
+    			if ((!current || dirty & /*formatTitle, FORM_STEPS, store*/ 4) && title_value !== (title_value = "\n    " + `${formatTitle(FORM_STEPS[/*store*/ ctx[2].currentStep])} - Step ${/*store*/ ctx[2].currentStep + 1}/${FORM_STEPS.length} | Multi-Asset Promotion` + "\n  ")) {
     				document.title = title_value;
     			}
 

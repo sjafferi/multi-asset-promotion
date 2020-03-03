@@ -1,7 +1,7 @@
 const fs = require('fs');
+const { uniqueNamesGenerator, adjectives, colors, animals } = require('unique-names-generator');
 
 const NUM_NAME_BUCKETS = 20;
-const NUM_CORRELATION_BUCKETS = 3;
 const ENVIRONMENTS = ["dev", "qa", "stag", "prod", "us2", "us1"];
 
 function generateAssets(numAssets) {
@@ -38,7 +38,14 @@ function generateAssets(numAssets) {
 }
 
 function generateNames(numNames) {
-  return [...Array(numNames)].map((_, index) => "Name-" + index);
+  return [...Array(numNames)].map(() => generateName());
+}
+
+function generateName() {
+  return uniqueNamesGenerator({
+    dictionaries: [adjectives, animals, colors], // colors can be omitted here as not used
+    length: 2
+  });
 }
 
 function generateCorrelationKeys(numCorrKeys) {

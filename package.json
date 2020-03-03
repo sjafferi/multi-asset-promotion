@@ -18,7 +18,8 @@
     "sirv-cli": "^0.4.2",
     "svelte": "^3.4.2",
     "svelte-routing": "1.4.0",
-    "svelte-select": "^3.4.0"
+    "svelte-select": "^3.4.0",
+    "unique-names-generator": "^4.2.0"
   },
   "scripts": {
     "start": "node server.js",
