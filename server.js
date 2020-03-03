@@ -20,10 +20,10 @@ server.get("*", function (req, res) {
     <!DOCTYPE html>
     <link rel='stylesheet' href='/global.css'>
     <link rel='stylesheet' href='/bundle.css'>
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
-    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
+    <link rel="stylesheet" href='/css/ag-grid.min.css'>
+    <link rel="stylesheet" href='/css/ag-theme-balham.min.css'>
     <div id="app">${html}</div>
-    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
+    <script src="/js/ag-grid-community.min.js"></script>
     <script src="/bundle.js"></script>
   `);
 
