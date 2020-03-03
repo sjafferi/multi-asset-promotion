@@ -5981,8 +5981,14 @@
     function create_fragment$f(ctx) {
     	let h2;
     	let current;
-    	const default_slot_template = /*$$slots*/ ctx[1].default;
-    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[0], null);
+    	const default_slot_template = /*$$slots*/ ctx[2].default;
+    	const default_slot = create_slot(default_slot_template, ctx, /*$$scope*/ ctx[1], null);
+    	let h2_levels = [/*$$props*/ ctx[0]];
+    	let h2_data = {};
+
+    	for (let i = 0; i < h2_levels.length; i += 1) {
+    		h2_data = assign(h2_data, h2_levels[i]);
+    	}
 
     	return {
     		c() {
@@ -5991,14 +5997,15 @@
     			this.h();
     		},
     		l(nodes) {
-    			h2 = claim_element(nodes, "H2", { class: true });
+    			h2 = claim_element(nodes, "H2", {});
     			var h2_nodes = children(h2);
     			if (default_slot) default_slot.l(h2_nodes);
     			h2_nodes.forEach(detach);
     			this.h();
     		},
     		h() {
-    			attr(h2, "class", "svelte-f45v0f");
+    			set_attributes(h2, h2_data);
+    			toggle_class(h2, "svelte-f45v0f", true);
     		},
     		m(target, anchor) {
     			insert(target, h2, anchor);
@@ -6010,9 +6017,12 @@
     			current = true;
     		},
     		p(ctx, [dirty]) {
-    			if (default_slot && default_slot.p && dirty & /*$$scope*/ 1) {
-    				default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[0], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[0], dirty, null));
+    			if (default_slot && default_slot.p && dirty & /*$$scope*/ 2) {
+    				default_slot.p(get_slot_context(default_slot_template, ctx, /*$$scope*/ ctx[1], null), get_slot_changes(default_slot_template, /*$$scope*/ ctx[1], dirty, null));
     			}
+
+    			set_attributes(h2, get_spread_update(h2_levels, [dirty & /*$$props*/ 1 && /*$$props*/ ctx[0]]));
+    			toggle_class(h2, "svelte-f45v0f", true);
     		},
     		i(local) {
     			if (current) return;
@@ -6033,11 +6043,13 @@
     function instance$f($$self, $$props, $$invalidate) {
     	let { $$slots = {}, $$scope } = $$props;
 
-    	$$self.$set = $$props => {
-    		if ("$$scope" in $$props) $$invalidate(0, $$scope = $$props.$$scope);
+    	$$self.$set = $$new_props => {
+    		$$invalidate(0, $$props = assign(assign({}, $$props), exclude_internal_props($$new_props)));
+    		if ("$$scope" in $$new_props) $$invalidate(1, $$scope = $$new_props.$$scope);
     	};
 
-    	return [$$scope, $$slots];
+    	$$props = exclude_internal_props($$props);
+    	return [$$props, $$scope, $$slots];
     }
 
     class Subtitle extends SvelteComponent {
@@ -6517,88 +6529,95 @@
     	return child_ctx;
     }
 
-    // (55:8) <Subtitle>
-    function create_default_slot_2$1(ctx) {
+    // (74:8) <Subtitle class="subtitle">
+    function create_default_slot_3(ctx) {
+    	let span2;
+    	let span0;
     	let t0_value = /*name*/ ctx[7] + "";
     	let t0;
     	let t1;
+    	let span1;
     	let t2_value = /*id*/ ctx[8] + "";
     	let t2;
     	let t3;
-    	let span;
-    	let t4_value = /*env*/ ctx[9] + "";
     	let t4;
+    	let span3;
+    	let t5_value = /*env*/ ctx[9] + "";
     	let t5;
-    	let t6;
-    	let t7;
 
     	return {
     		c() {
+    			span2 = element("span");
+    			span0 = element("span");
     			t0 = text(t0_value);
     			t1 = space();
+    			span1 = element("span");
     			t2 = text(t2_value);
-    			t3 = text(":\n          ");
-    			span = element("span");
-    			t4 = text(t4_value);
-    			t5 = space();
-    			t6 = text(/*environment*/ ctx[0]);
-    			t7 = space();
+    			t3 = text("\n            :");
+    			t4 = space();
+    			span3 = element("span");
+    			t5 = text(t5_value);
     			this.h();
     		},
     		l(nodes) {
-    			t0 = claim_text(nodes, t0_value);
-    			t1 = claim_space(nodes);
-    			t2 = claim_text(nodes, t2_value);
-    			t3 = claim_text(nodes, ":\n          ");
-    			span = claim_element(nodes, "SPAN", { class: true });
-    			var span_nodes = children(span);
-    			t4 = claim_text(span_nodes, t4_value);
-    			span_nodes.forEach(detach);
-    			t5 = claim_space(nodes);
-    			t6 = claim_text(nodes, /*environment*/ ctx[0]);
-    			t7 = claim_space(nodes);
+    			span2 = claim_element(nodes, "SPAN", {});
+    			var span2_nodes = children(span2);
+    			span0 = claim_element(span2_nodes, "SPAN", { class: true });
+    			var span0_nodes = children(span0);
+    			t0 = claim_text(span0_nodes, t0_value);
+    			span0_nodes.forEach(detach);
+    			t1 = claim_space(span2_nodes);
+    			span1 = claim_element(span2_nodes, "SPAN", { class: true });
+    			var span1_nodes = children(span1);
+    			t2 = claim_text(span1_nodes, t2_value);
+    			span1_nodes.forEach(detach);
+    			t3 = claim_text(span2_nodes, "\n            :");
+    			span2_nodes.forEach(detach);
+    			t4 = claim_space(nodes);
+    			span3 = claim_element(nodes, "SPAN", { class: true });
+    			var span3_nodes = children(span3);
+    			t5 = claim_text(span3_nodes, t5_value);
+    			span3_nodes.forEach(detach);
     			this.h();
     		},
     		h() {
-    			attr(span, "class", "cross svelte-18grau8");
+    			attr(span0, "class", "name svelte-bzt96v");
+    			attr(span1, "class", "id svelte-bzt96v");
+    			attr(span3, "class", "cross svelte-bzt96v");
     		},
     		m(target, anchor) {
-    			insert(target, t0, anchor);
-    			insert(target, t1, anchor);
-    			insert(target, t2, anchor);
-    			insert(target, t3, anchor);
-    			insert(target, span, anchor);
-    			append(span, t4);
-    			insert(target, t5, anchor);
-    			insert(target, t6, anchor);
-    			insert(target, t7, anchor);
+    			insert(target, span2, anchor);
+    			append(span2, span0);
+    			append(span0, t0);
+    			append(span2, t1);
+    			append(span2, span1);
+    			append(span1, t2);
+    			append(span2, t3);
+    			insert(target, t4, anchor);
+    			insert(target, span3, anchor);
+    			append(span3, t5);
     		},
     		p(ctx, dirty) {
     			if (dirty & /*selectedAssets*/ 2 && t0_value !== (t0_value = /*name*/ ctx[7] + "")) set_data(t0, t0_value);
     			if (dirty & /*selectedAssets*/ 2 && t2_value !== (t2_value = /*id*/ ctx[8] + "")) set_data(t2, t2_value);
-    			if (dirty & /*selectedAssets*/ 2 && t4_value !== (t4_value = /*env*/ ctx[9] + "")) set_data(t4, t4_value);
-    			if (dirty & /*environment*/ 1) set_data(t6, /*environment*/ ctx[0]);
+    			if (dirty & /*selectedAssets*/ 2 && t5_value !== (t5_value = /*env*/ ctx[9] + "")) set_data(t5, t5_value);
     		},
     		d(detaching) {
-    			if (detaching) detach(t0);
-    			if (detaching) detach(t1);
-    			if (detaching) detach(t2);
-    			if (detaching) detach(t3);
-    			if (detaching) detach(span);
-    			if (detaching) detach(t5);
-    			if (detaching) detach(t6);
-    			if (detaching) detach(t7);
+    			if (detaching) detach(span2);
+    			if (detaching) detach(t4);
+    			if (detaching) detach(span3);
     		}
     	};
     }
 
-    // (54:6) {#each selectedAssets as { name, id, env }}
+    // (73:6) {#each selectedAssets as { name, id, env }}
     function create_each_block$5(ctx) {
     	let current;
 
     	const subtitle = new Subtitle({
     			props: {
-    				$$slots: { default: [create_default_slot_2$1] },
+    				class: "subtitle",
+    				$$slots: { default: [create_default_slot_3] },
     				$$scope: { ctx }
     			}
     		});
@@ -6617,7 +6636,7 @@
     		p(ctx, dirty) {
     			const subtitle_changes = {};
 
-    			if (dirty & /*$$scope, environment, selectedAssets*/ 4099) {
+    			if (dirty & /*$$scope, selectedAssets*/ 4098) {
     				subtitle_changes.$$scope = { dirty, ctx };
     			}
 
@@ -6638,7 +6657,35 @@
     	};
     }
 
-    // (64:8) <Button outline={true} onClick={() => state.reset()}>
+    // (83:6) <Subtitle class="subtitle">
+    function create_default_slot_2$1(ctx) {
+    	let t0;
+    	let t1;
+
+    	return {
+    		c() {
+    			t0 = text("promoted to: ");
+    			t1 = text(/*environment*/ ctx[0]);
+    		},
+    		l(nodes) {
+    			t0 = claim_text(nodes, "promoted to: ");
+    			t1 = claim_text(nodes, /*environment*/ ctx[0]);
+    		},
+    		m(target, anchor) {
+    			insert(target, t0, anchor);
+    			insert(target, t1, anchor);
+    		},
+    		p(ctx, dirty) {
+    			if (dirty & /*environment*/ 1) set_data(t1, /*environment*/ ctx[0]);
+    		},
+    		d(detaching) {
+    			if (detaching) detach(t0);
+    			if (detaching) detach(t1);
+    		}
+    	};
+    }
+
+    // (87:8) <Button outline={true} onClick={() => state.reset()}>
     function create_default_slot_1$2(ctx) {
     	let t;
 
@@ -6658,7 +6705,7 @@
     	};
     }
 
-    // (67:8) <Button           outline={true}           onClick={() => onSubmit(environment, selectedAssets)}>
+    // (90:8) <Button           outline={true}           onClick={() => onSubmit(environment, selectedAssets)}>
     function create_default_slot$4(ctx) {
     	let t_value = (/*isSaving*/ ctx[3] ? "Saving..." : "Submit") + "";
     	let t;
@@ -6688,9 +6735,10 @@
     	let div2;
     	let div0;
     	let t1;
+    	let t2;
     	let div1;
     	let span0;
-    	let t2;
+    	let t3;
     	let span1;
     	let current;
 
@@ -6712,6 +6760,14 @@
     	const out = i => transition_out(each_blocks[i], 1, 1, () => {
     		each_blocks[i] = null;
     	});
+
+    	const subtitle = new Subtitle({
+    			props: {
+    				class: "subtitle",
+    				$$slots: { default: [create_default_slot_2$1] },
+    				$$scope: { ctx }
+    			}
+    		});
 
     	const button0 = new Button({
     			props: {
@@ -6744,10 +6800,12 @@
     			}
 
     			t1 = space();
+    			create_component(subtitle.$$.fragment);
+    			t2 = space();
     			div1 = element("div");
     			span0 = element("span");
     			create_component(button0.$$.fragment);
-    			t2 = space();
+    			t3 = space();
     			span1 = element("span");
     			create_component(button1.$$.fragment);
     			this.h();
@@ -6766,15 +6824,17 @@
     				each_blocks[i].l(div0_nodes);
     			}
 
+    			t1 = claim_space(div0_nodes);
+    			claim_component(subtitle.$$.fragment, div0_nodes);
     			div0_nodes.forEach(detach);
-    			t1 = claim_space(div2_nodes);
+    			t2 = claim_space(div2_nodes);
     			div1 = claim_element(div2_nodes, "DIV", { class: true });
     			var div1_nodes = children(div1);
     			span0 = claim_element(div1_nodes, "SPAN", { class: true });
     			var span0_nodes = children(span0);
     			claim_component(button0.$$.fragment, span0_nodes);
     			span0_nodes.forEach(detach);
-    			t2 = claim_space(div1_nodes);
+    			t3 = claim_space(div1_nodes);
     			span1 = claim_element(div1_nodes, "SPAN", { class: true });
     			var span1_nodes = children(span1);
     			claim_component(button1.$$.fragment, span1_nodes);
@@ -6785,11 +6845,11 @@
     			this.h();
     		},
     		h() {
-    			attr(div0, "class", "summary svelte-18grau8");
-    			attr(span0, "class", "cancel svelte-18grau8");
-    			attr(span1, "class", "submit svelte-18grau8");
-    			attr(div1, "class", "buttons svelte-18grau8");
-    			attr(div2, "class", "content svelte-18grau8");
+    			attr(div0, "class", "summary svelte-bzt96v");
+    			attr(span0, "class", "cancel svelte-bzt96v");
+    			attr(span1, "class", "submit svelte-bzt96v");
+    			attr(div1, "class", "buttons svelte-bzt96v");
+    			attr(div2, "class", "content svelte-bzt96v");
     			attr(div3, "class", "confirm");
     		},
     		m(target, anchor) {
@@ -6803,11 +6863,13 @@
     				each_blocks[i].m(div0, null);
     			}
 
-    			append(div2, t1);
+    			append(div0, t1);
+    			mount_component(subtitle, div0, null);
+    			append(div2, t2);
     			append(div2, div1);
     			append(div1, span0);
     			mount_component(button0, span0, null);
-    			append(div1, t2);
+    			append(div1, t3);
     			append(div1, span1);
     			mount_component(button1, span1, null);
     			current = true;
@@ -6817,7 +6879,7 @@
     			if (dirty & /*state*/ 4) header_changes.state = /*state*/ ctx[2];
     			header.$set(header_changes);
 
-    			if (dirty & /*environment, selectedAssets*/ 3) {
+    			if (dirty & /*selectedAssets*/ 2) {
     				each_value = /*selectedAssets*/ ctx[1];
     				let i;
 
@@ -6831,7 +6893,7 @@
     						each_blocks[i] = create_each_block$5(child_ctx);
     						each_blocks[i].c();
     						transition_in(each_blocks[i], 1);
-    						each_blocks[i].m(div0, null);
+    						each_blocks[i].m(div0, t1);
     					}
     				}
 
@@ -6844,6 +6906,13 @@
     				check_outros();
     			}
 
+    			const subtitle_changes = {};
+
+    			if (dirty & /*$$scope, environment*/ 4097) {
+    				subtitle_changes.$$scope = { dirty, ctx };
+    			}
+
+    			subtitle.$set(subtitle_changes);
     			const button0_changes = {};
     			if (dirty & /*state*/ 4) button0_changes.onClick = /*func*/ ctx[5];
 
@@ -6869,6 +6938,7 @@
     				transition_in(each_blocks[i]);
     			}
 
+    			transition_in(subtitle.$$.fragment, local);
     			transition_in(button0.$$.fragment, local);
     			transition_in(button1.$$.fragment, local);
     			current = true;
@@ -6881,6 +6951,7 @@
     				transition_out(each_blocks[i]);
     			}
 
+    			transition_out(subtitle.$$.fragment, local);
     			transition_out(button0.$$.fragment, local);
     			transition_out(button1.$$.fragment, local);
     			current = false;
@@ -6889,6 +6960,7 @@
     			if (detaching) detach(div3);
     			destroy_component(header);
     			destroy_each(each_blocks, detaching);
+    			destroy_component(subtitle);
     			destroy_component(button0);
     			destroy_component(button1);
     		}

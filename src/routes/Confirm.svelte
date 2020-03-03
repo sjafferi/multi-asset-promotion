@@ -28,6 +28,25 @@
     padding: 25px 0;
   }
 
+  .name {
+    font-weight: bold;
+  }
+
+  .id {
+    font-style: italic;
+  }
+
+  :global(.subtitle) {
+    width: 100%;
+    max-width: 40ch;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  :global(.subtitle:last-child) {
+    justify-content: flex-end;
+  }
+
   :global(.summary h2) {
     font-weight: 300;
   }
@@ -52,12 +71,16 @@
   <div class="content">
     <div class="summary">
       {#each selectedAssets as { name, id, env }}
-        <Subtitle>
-          {name} {id}:
+        <Subtitle class="subtitle">
+          <span>
+            <span class="name">{name}</span>
+            <span class="id">{id}</span>
+            :
+          </span>
           <span class="cross">{env}</span>
-          {environment}
         </Subtitle>
       {/each}
+      <Subtitle class="subtitle">promoted to: {environment}</Subtitle>
     </div>
     <div class="buttons">
       <span class="cancel">

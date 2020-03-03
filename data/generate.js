@@ -38,14 +38,7 @@ function generateAssets(numAssets) {
 }
 
 function generateNames(numNames) {
-  return [...Array(numNames)].map(() => generateName());
-}
-
-function generateName() {
-  return uniqueNamesGenerator({
-    dictionaries: [adjectives, animals, colors], // colors can be omitted here as not used
-    length: 2
-  });
+  return [...Array(numNames)].map((_, index) => "Name-" + index);
 }
 
 function generateCorrelationKeys(numCorrKeys) {
@@ -53,7 +46,10 @@ function generateCorrelationKeys(numCorrKeys) {
 }
 
 function generateId() {
-  return Math.random().toString(36).substring(2, 15) + Math.random().toString(36).substring(2, 15);
+  return uniqueNamesGenerator({
+    dictionaries: [adjectives, animals, colors], // colors can be omitted here as not used
+    length: 2
+  });
 }
 
 function generateEnv() {
