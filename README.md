@@ -1,7 +1,10 @@
-# svelte-ssr-template
-Barebones svelte template repo with SSR and routing 
-
+# Multi Asset Promotion UI
 
 # Installation
-`yarn && yarn dev`
+Clone and cd into this repo.
 
+```
+yarn && yarn dev
+```
+
+Open [http://localhost:3000](http://localhost:3000)
