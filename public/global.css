@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300,600i&display=swap');
 
 body {
   font-family: 'Open Sans', sans-serif;
@@ -11,3 +11,20 @@ body {
   box-sizing: inherit;
 }
 
+
+.small-scrollbar::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #888;
+}
+
+.small-scrollbar::-webkit-scrollbar {
+    width: 5px;
+    background-color: transparent;
+    box-shadow: none;
+}
+
+.toasts {
+  top: initial !important;
+  bottom: 0 !important;  
+}

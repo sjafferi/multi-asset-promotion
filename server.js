@@ -8,10 +8,10 @@ const server = express();
 server.use(bodyParser.json({ limit: "10mb" }));
 server.use(express.static(path.join(__dirname, "public")));
 
-server.post('/get-post', function (req, res) {
-  const path = `${__dirname}/posts/${req.body.slug}.md`;
-  const file = fs.readFileSync(path, 'utf8');
-  res.send({ post: file.toString() });
+server.get('/get-assets', function (req, res) {
+  const path = `${__dirname}/data/assets.json`;
+  const assets = fs.readFileSync(path);
+  res.send(JSON.parse(assets));
 });
 
 server.get("*", function (req, res) {
@@ -20,7 +20,10 @@ server.get("*", function (req, res) {
     <!DOCTYPE html>
     <link rel='stylesheet' href='/global.css'>
     <link rel='stylesheet' href='/bundle.css'>
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-grid.css">
+    <link rel="stylesheet" href="https://unpkg.com/ag-grid-community/dist/styles/ag-theme-balham.css">
     <div id="app">${html}</div>
+    <script src="https://unpkg.com/ag-grid-community/dist/ag-grid-community.min.js"></script>
     <script src="/bundle.js"></script>
   `);
 

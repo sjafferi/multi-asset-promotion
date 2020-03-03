@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "@beyonk/svelte-notifications": "^2.0.3",
     "@rollup/plugin-alias": "^3.0.1",
     "body-parser": "^1.19.0",
     "express": "^4.17.0",
@@ -16,7 +17,8 @@
     "rollup-plugin-terser": "^5.0.0",
     "sirv-cli": "^0.4.2",
     "svelte": "^3.4.2",
-    "svelte-routing": "1.4.0"
+    "svelte-routing": "1.4.0",
+    "svelte-select": "^3.4.0"
   },
   "scripts": {
     "start": "node server.js",
@@ -24,5 +26,6 @@
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "server": "nodemon server.js --watch server.js --watch public/App.js"
-  }
+  },
+  "devDependencies": {}
 }
